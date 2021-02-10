@@ -7,6 +7,6 @@ app.get('/',(req,res)=>{
     res.send("Node Homepage")
 });
 
-app.listen(5000,()=>{
+app.listen(port,()=>{
     console.log(`App is running at ${port}`);
 });
