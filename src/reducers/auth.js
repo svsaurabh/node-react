@@ -32,7 +32,7 @@ export default function (state = initialState, action) {
                 ...state,
                 ...payload,
                 isAuthenticated: true,
-                loading: false
+                loading: true
             }
         case REGISTER_FAIL:
         case LOGIN_FAIL:

@@ -26,7 +26,7 @@ router.post(
     try {
       let user = await User.findOne({ email });
       if (user) {
-        res.json({ msg: "user already exist" });
+        return res.status(400).json({errors: [{msg: 'User already exists'}]});
       }
       const user1 = { name: name, email: email };
       let data = await allUser.create(user1);
@@ -51,7 +51,7 @@ router.post(
       });
     } catch (err) {
       console.error(err.message + "\n" + err);
-      res.send("server error");
+      res.status(500).send("server error");
     }
   }
 );
@@ -61,7 +61,6 @@ router.get("/user", middleware, async (req, res) => {
     const user = await allUser.findById(req.user.id);
     res.json(user);
   } catch (err) {
-    console.error(err.message);
     res.status(500).send("Server Error");
   }
 });
@@ -75,17 +74,17 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.json({ msg: errors.array() });
+      return res.send(400).json({ msg: errors.array() });
     }
     const { email, password } = req.body;
     try {
       var user = await User.findOne({ email });
       if (!user) {
-        return res.json({ msg: "No user exist with this email" });
+        return res.status(401).json({errors: [{msg: "No user exist with this email"}] });
       }
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        res.json({ msg: "Invalid Credentials" });
+        return res.status(400).json({errors: [{ msg: "Invalid Credentials"}] });
       }
 
       const payload = {
@@ -98,7 +97,7 @@ router.post(
         res.json({ token });
       });
     } catch (err) {
-      res.send("server error");
+      res.status(500).send("server error");
     }
   }
 );
