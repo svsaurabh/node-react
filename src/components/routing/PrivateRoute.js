@@ -20,7 +20,7 @@ const PrivateRoute = ({
   />
 );
 
-PrivateRoute.propTypes = {
+PrivateRoute.protoTypes = {
   auth: PropTypes.object.isRequired,
 };
 

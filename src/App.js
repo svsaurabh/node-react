@@ -6,6 +6,7 @@ import Landing from './components/layout/Landing'
 import Login from './components/auth/Login'
 import Alert from './components/layout/Alert'
 import Register from './components/auth/Register'
+import Author from './components/profile/Author'
 import Authenticated from './components/auth/Authenticated'
 import { Provider } from 'react-redux';
 import store from './store';
@@ -18,6 +19,9 @@ if(localStorage.token){
 }
 
 const App =() => {
+  useEffect(() =>{
+    store.dispatch(loadUser());
+  }, []);
   return (
     <Provider store={store}>
       <Router>
@@ -30,6 +34,7 @@ const App =() => {
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
             <PrivateRoute exact path='/authenticated' component={Authenticated}/>
+            <PrivateRoute exact path='/author' component={Author}/>
           </Switch>
           </section>
         </Fragment>

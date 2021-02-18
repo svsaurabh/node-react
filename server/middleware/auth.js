@@ -1,15 +1,16 @@
 const jwt = require('jsonwebtoken');
+const config = require('config');
 
 module.exports = function(req, res, next) {
     const token = req.header('auth-token');
-    if(!token){
-        return res.json({message: 'No token, authorization denied'});
+    if (!token){
+        return res.status(401).json({msg: 'No token, authorization denied'});
     }
     try{
         const decode = jwt.verify(token, 'mysecretkey')
         req.user = decode.user;
         next();
     }catch(err){
-        res.json({message: 'token not valid'})
+        res.status(401).json({msg: 'Token is not valid'})
     }
 }

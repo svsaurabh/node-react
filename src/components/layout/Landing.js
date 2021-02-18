@@ -23,7 +23,7 @@ const Landing = ({ isAuthenticated }) => {
     )
 }
 
-Landing.propTypes = {
+Landing.protoTypes = {
   isAuthenticated: PropTypes.bool,
 }
 
