@@ -10,6 +10,7 @@ import {
     LOGIN_FAIL,
     LOGOUT,
 } from './types';
+import {loadProfile} from './profile'
 
 //Load User
 export const loadUser = () => async dispatch =>{
@@ -47,6 +48,7 @@ export const register = ({ name, email, password }) => async dispatch =>{
             payload: res.data
         });
         dispatch(loadUser());
+        dispatch(loadProfile());
     } catch (error) {
         console.log(error)
         const errors = error.response.data.errors;
@@ -76,6 +78,7 @@ export const login = ({ email, password }) => async dispatch =>{
             payload: res.data
         });
         dispatch(loadUser());
+        dispatch(loadProfile());
     } catch (error) {
         const errors = error.response.data.errors;
         if(errors){

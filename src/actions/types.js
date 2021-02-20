@@ -1,5 +1,3 @@
-export const GET_TEST = 'GET_TEST';
-export const ERROR_TEST = 'ERROR_TEST';
 export const SET_ALERT ='SET_ALERT';
 export const REMOVE_ALERT ='REMOVE_ALERT';
 export const REGISTER_SUCCESS ='REGISTER_SUCCESS';
@@ -10,3 +8,7 @@ export const LOGIN_SUCCESS ='LOGIN_SUCCESS';
 export const LOGIN_FAIL ='LOGIN_FAIL';
 export const LOGOUT ='LOGOUT';
 export const ACCOUNT_DELETED ='ACCOUNT_DELETED';
+export const IS_AUTHOR = 'IS_AUTHOR';
+export const AUTHOR_ERROR = 'AUTHOR_ERROR';
+export const PROFILE_LOADED = 'PROFILE_LOADED';
+export const PROFILE_ERROR = 'PROFILE_ERROR';
