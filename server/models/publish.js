@@ -1,17 +1,17 @@
 const mongoose = require("mongoose");
 
 const publishSchema = new mongoose.Schema({
-  published_by: {
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "allUser",
   },
   isBlog: {
     type: Boolean,
-    defult: false,
+    default: false,
   },
   isTutorial: {
     type: Boolean,
-    defult: false,
+    default: false,
   },
   technology: {
     type: String,

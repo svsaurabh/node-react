@@ -6,7 +6,7 @@ import { isauthor } from '../../actions/profile';
 import { loadProfile } from '../../actions/profile';
 
 
-const Author = ({loadProfile, isauthor, profile,loading}) =>{
+const Author = ({loadProfile, isauthor, history}) =>{
     useEffect(() =>{
         loadProfile();
     },[])
@@ -17,7 +17,7 @@ const Author = ({loadProfile, isauthor, profile,loading}) =>{
     const onSubmit =async e =>{
         e.preventDefault();
         console.log("submitted")
-        isauthor(formData);
+        isauthor(formData, history);
     }
     return(
         <Fragment>

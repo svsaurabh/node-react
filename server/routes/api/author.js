@@ -3,6 +3,7 @@ const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const Publish = require("../../models/publish");
 const middleware = require("../../middleware/auth");
+const { findOne } = require("../../models/publish");
 
 router.post(
   "/publish",
@@ -27,10 +28,10 @@ router.post(
     publishField.technology = technology;
     publishField.type = type;
     publishField.detail = detail;
-
     try {
-      await Publish.create(publishField);
-      res.json(publishField);
+      let publish = new Publish(publishField);
+      await publish.save();
+      res.json(publish);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("server Error");
@@ -38,9 +39,20 @@ router.post(
   }
 );
 
+router.get('/me', [middleware], async (req,res) => {
+  try{
+    const publish = await Publish.find({user_id: req.user.id}).populate('user_id', ['name']);
+    res.json(publish);
+  }
+  catch(err){
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+})
+
 router.get('/publish', async (req,res) => {
     try{
-        const publish = await Publish.find({})
+        const publish = await Publish.find({}).populate('user_id', ['name'])
         res.json(publish)
     }
     catch(err){
