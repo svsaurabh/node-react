@@ -1,12 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+import {loadUser} from '../../actions/auth'
 import {logout} from '../../actions/auth'
 
-const Authenticated = ({auth: {isAuthenticated, user, loading }, logout}) => {
+const Authenticated = ({auth: {isAuthenticated, user, loading }, logout, loadUser}) => {
   // if(!isAuthenticated){
   //   <Redirect to='/login'/>
   // }
+  useEffect(() =>{
+    loadUser()
+  }, [])
   const content = ( 
   <Fragment>
     <a onClick={logout} href='/'>
@@ -23,6 +27,7 @@ const Authenticated = ({auth: {isAuthenticated, user, loading }, logout}) => {
   )
 }
 Authenticated.protoTypes = {
+    loadUser:PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
   }
@@ -31,5 +36,5 @@ Authenticated.protoTypes = {
     auth: state.auth,
   });
   
-export default connect(mapStateToProps, { logout })(Authenticated)
+export default connect(mapStateToProps, {loadUser, logout })(Authenticated)
   

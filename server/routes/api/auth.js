@@ -7,6 +7,16 @@ const User = require("../../models/user");
 const allUser = require("../../models/allUser");
 const middleware = require("../../middleware/auth");
 
+router.get('/', async(req, res) =>{
+  try{
+    let users = await allUser.find({});
+    res.json(users)}
+  catch(err){
+    console.error(err.message + "\n" + err);
+    res.status(500).send("server error");
+  }
+})
+
 router.post(
   "/register",
   [

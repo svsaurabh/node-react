@@ -3,7 +3,6 @@ const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const Publish = require("../../models/publish");
 const middleware = require("../../middleware/auth");
-const { findOne } = require("../../models/publish");
 
 router.post(
   "/publish",
