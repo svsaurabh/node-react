@@ -2,10 +2,13 @@ import {
     AUTHOR_ERROR,
     IS_AUTHOR,
     PROFILE_LOADED,
-    PROFILE_ERROR
+    PROFILE_ERROR,
+    PUBLISH_LOADED,
+    PUBLISH_ERROR
 } from '../actions/types'
 
 const initialState = {
+    publishes: [],
     profile: null,
     loading : true,
     errors: {}
@@ -27,6 +30,12 @@ export default function (state = initialState, action) {
                 loading: true,
                 profile: payload
             }
+        case PUBLISH_LOADED:
+            return{
+                ...state,
+                publishes : payload
+        }
+        case PUBLISH_ERROR:
         case PROFILE_ERROR:
         case AUTHOR_ERROR:
             return {

@@ -16,6 +16,7 @@ const Landing = ({ isAuthenticated }) => {
           <div className="buttons">
             <Link to='/register' className="btn btn-primary">Sign Up</Link>
             <Link to='/login' className="btn btn-dark">Login</Link>
+            <Link to='/oauth' className="btn btn-success">Continue using Google</Link>
           </div>
         </div>
       </div>

@@ -6,6 +6,8 @@ import Landing from './components/layout/Landing'
 import Login from './components/auth/Login'
 import Alert from './components/layout/Alert'
 import Register from './components/auth/Register'
+import Publish from './components/profile/Publish'
+import Oauth from './components/auth/Oauth'
 import Author from './components/profile/Author'
 import Authenticated from './components/auth/Authenticated'
 import { Provider } from 'react-redux';
@@ -32,7 +34,9 @@ const App =() => {
           <Alert />
           <Switch>
             <Route exact path='/login' component={Login}/>
+            <Route exact path='/publish' component={Publish}/>
             <Route exact path='/register' component={Register}/>
+            <Route exact path='/oauth' component={Oauth}/>
             <PrivateRoute exact path='/authenticated' component={Authenticated}/>
             <PrivateRoute exact path='/author' component={Author}/>
           </Switch>

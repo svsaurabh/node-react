@@ -5,6 +5,8 @@ import {
   AUTHOR_ERROR,
   PROFILE_LOADED,
   PROFILE_ERROR,
+  PUBLISH_LOADED,
+  PUBLISH_ERROR
 } from "./types";
 
 export const loadProfile = () => async (dispatch) => {
@@ -17,6 +19,20 @@ export const loadProfile = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: PROFILE_ERROR,
+    });
+  }
+};
+
+export const loadPublish = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/author/publish");
+    dispatch({
+      type: PUBLISH_LOADED,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PUBLISH_ERROR,
     });
   }
 };

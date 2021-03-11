@@ -1,13 +1,14 @@
 import React, { Fragment, useEffect } from 'react';
+import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {loadUser} from '../../actions/auth'
 import {logout} from '../../actions/auth'
 
 const Authenticated = ({auth: {isAuthenticated, user, loading }, logout, loadUser}) => {
-  // if(!isAuthenticated){
-  //   <Redirect to='/login'/>
-  // }
+   if(!isAuthenticated){
+     <Redirect to='/'/>
+   }
   useEffect(() =>{
     loadUser()
   }, [])
@@ -18,7 +19,7 @@ const Authenticated = ({auth: {isAuthenticated, user, loading }, logout, loadUse
     <span className='hide-sm'>Logout</span></a><br></br><hr></hr>
     <Fragment>{user?<Fragment> Name : {user.name} <br></br> Author: {user.isAuthor?<Fragment>true</Fragment> :<Fragment> false </Fragment>} <br></br> </Fragment>: null}</Fragment>
     <hr></hr>
-    {!loading?  (user.isAuthor === false ? (<Fragment> Want to become Author. <a href= "/author">Apply Now? </a></Fragment>):<Fragment> You are author</Fragment> /*<Link to= '/publish' className = 'btn btn-primary'>Publish</Link>*/ ): null}
+    {!loading?  (user.isAuthor === false ? (<Fragment> Want to become Author. <a href= "/author">Apply Now? </a></Fragment>):<Fragment> You are author <Link to= '#' className = 'btn btn-primary'>Publish</Link></Fragment> ): null}
   </Fragment>
   ) 
   return (

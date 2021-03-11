@@ -12,3 +12,5 @@ export const IS_AUTHOR = 'IS_AUTHOR';
 export const AUTHOR_ERROR = 'AUTHOR_ERROR';
 export const PROFILE_LOADED = 'PROFILE_LOADED';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
+export const PUBLISH_LOADED = 'PUBLISH_LOADED';
+export const PUBLISH_ERROR = 'PUBLISH_ERROR';
