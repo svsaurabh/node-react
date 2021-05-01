@@ -6,7 +6,8 @@ import {
   PROFILE_LOADED,
   PROFILE_ERROR,
   PUBLISH_LOADED,
-  PUBLISH_ERROR
+  PUBLISH_ERROR,
+  PUBLISH_POSTED
 } from "./types";
 
 export const loadProfile = () => async (dispatch) => {
@@ -63,3 +64,28 @@ export const isauthor = (formData, history) => async (dispatch) => {
     });
   }
 };
+
+export const publish = ({technology, type, detail}) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  const body = JSON.stringify({ technology, type, detail });
+  try {
+    const res = await axios.post('/api/author/publish',body,config);
+    dispatch({
+        type: PUBLISH_POSTED,
+        payload: res.data
+    });
+    loadPublish();
+} catch (error) {
+    const errors = error.response.data.errors;
+    if(errors){
+        errors.forEach(err => dispatch(setAlert(err.msg, 'danger')));
+    }
+    dispatch({
+        type: PUBLISH_ERROR
+    });
+}
+}

@@ -19,7 +19,7 @@ const Authenticated = ({auth: {isAuthenticated, user, loading }, logout, loadUse
     <span className='hide-sm'>Logout</span></a><br></br><hr></hr>
     <Fragment>{user?<Fragment> Name : {user.name} <br></br> Author: {user.isAuthor?<Fragment>true</Fragment> :<Fragment> false </Fragment>} <br></br> </Fragment>: null}</Fragment>
     <hr></hr>
-    {!loading?  (user.isAuthor === false ? (<Fragment> Want to become Author. <a href= "/author">Apply Now? </a></Fragment>):<Fragment> You are author <Link to= '#' className = 'btn btn-primary'>Publish</Link></Fragment> ): null}
+    {!loading?  (user.isAuthor === false ? (<Fragment> Want to become Author. <a href= "/author">Apply Now? </a></Fragment>):<Fragment> You are author <Link to= '/createpublish' className = 'btn btn-primary'>Publish</Link></Fragment> ): null}
   </Fragment>
   ) 
   return (

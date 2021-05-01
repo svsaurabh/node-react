@@ -7,6 +7,7 @@ import Login from './components/auth/Login'
 import Alert from './components/layout/Alert'
 import Register from './components/auth/Register'
 import Publish from './components/profile/Publish'
+import Createpublish from './components/profile/PublishForm'
 import Oauth from './components/auth/Oauth'
 import Author from './components/profile/Author'
 import Authenticated from './components/auth/Authenticated'
@@ -38,6 +39,7 @@ const App =() => {
             <Route exact path='/register' component={Register}/>
             <Route exact path='/oauth' component={Oauth}/>
             <PrivateRoute exact path='/authenticated' component={Authenticated}/>
+            <PrivateRoute exact path='/createpublish' component={Createpublish}/>
             <PrivateRoute exact path='/author' component={Author}/>
           </Switch>
           </section>

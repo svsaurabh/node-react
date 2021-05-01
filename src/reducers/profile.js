@@ -4,7 +4,8 @@ import {
     PROFILE_LOADED,
     PROFILE_ERROR,
     PUBLISH_LOADED,
-    PUBLISH_ERROR
+    PUBLISH_ERROR,
+    PUBLISH_POSTED
 } from '../actions/types'
 
 const initialState = {
@@ -35,6 +36,11 @@ export default function (state = initialState, action) {
                 ...state,
                 publishes : payload
         }
+        case PUBLISH_POSTED:
+            return{
+                ...state,
+                loading: false
+            }
         case PUBLISH_ERROR:
         case PROFILE_ERROR:
         case AUTHOR_ERROR:

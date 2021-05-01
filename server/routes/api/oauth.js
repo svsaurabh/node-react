@@ -16,32 +16,33 @@ router.get(
 
 router.get(
   "/google/callback",
-  passport.authenticate("google", { successRedirect:"http://localhost:5000", failureRedirect: "/loginFailed" })
-  // async (req, res) => {
-  //   res.send('Success');
-  //   res.redirect(`/getToken/${req.session.passport.user.id}`);
-  // }
+  passport.authenticate("google", { successRedirect:"/", failureRedirect: "/loginFailed" })
 );
 
-router.get("/login/success", async(req,res) => {
-  res.send()
+router.get("/logout", async(req,res) => {
+  req.logout();
+  res.send('logout')
 })
 
-router.get("/getToken/:id", async (req, res) => {
-  try {
-    let user1 = await User_google.findOne({ _id: req.params.id });
-    const payload = {
-      user: {
-        id: user1.user_id,
-      },
-    };
-    jwt.sign(payload, "mysecretkey", { expiresIn: 36000 }, (err, token) => {
-      if (err) throw err;
-      res.json({ token });
-    });
-  } catch (err) {
-    res.send("Invalid Token");
-  }
-});
+router.get('/current', async(req,res)=>{
+  res.send(req.user)
+}) 
+
+// router.get("/getToken/:id", async (req, res) => {
+//   try {
+//     let user1 = await User_google.findOne({ _id: req.params.id });
+//     const payload = {
+//       user: {
+//         id: user1.user_id,
+//       },
+//     };
+//     jwt.sign(payload, "mysecretkey", { expiresIn: 36000 }, (err, token) => {
+//       if (err) throw err;
+//       res.json({ token });
+//     });
+//   } catch (err) {
+//     res.send("Invalid Token");
+//   }
+// });
 
 module.exports = router;
